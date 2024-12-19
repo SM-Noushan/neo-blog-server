@@ -1,7 +1,8 @@
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import express, { Application, Request, Response } from 'express';
 import notFound from './app/middleware/notFound';
+import express, { Application, Request, Response } from 'express';
+import globalErrorHandler from './app/middleware/globalErrorHandler';
 
 const app: Application = express();
 
@@ -21,6 +22,8 @@ app.get('/', async (req: Request, res: Response) => {
   res.send('Welcome to Neo Blog (SERVER)!');
 });
 
+// global error handler
+app.use(globalErrorHandler);
 // not found route handler
 app.use(notFound);
 
