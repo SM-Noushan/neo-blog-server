@@ -49,7 +49,7 @@ userSchema.statics.isUserExistsByEmail = async function (
 ) {
   return await validateDoc({
     model: this,
-    query: { email },
+    query: { email: { $regex: email, $options: 'i' } },
     errMsg: throwErrorIfUserExist
       ? '!Unauthorized !!User not found.'
       : '!Denied !!User already exists',
