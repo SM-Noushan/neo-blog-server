@@ -1,4 +1,5 @@
 import cors from 'cors';
+import router from './app/routes';
 import cookieParser from 'cookie-parser';
 import notFound from './app/middleware/notFound';
 import express, { Application, Request, Response } from 'express';
@@ -16,7 +17,7 @@ app.use(
 );
 
 // application routes
-app.use('/api');
+app.use('/api', router);
 
 app.get('/', async (req: Request, res: Response) => {
   res.send('Welcome to Neo Blog (SERVER)!');
