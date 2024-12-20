@@ -20,7 +20,7 @@ const userSchema = new Schema<IUser, IUserModel>(
       },
       default: UserRole.user,
     },
-    isBlocked: { type: Boolean, required: true, default: false },
+    isBlocked: { type: Boolean, default: false },
   },
   {
     timestamps: true,
