@@ -29,15 +29,16 @@ const userSchema = new Schema<IUser, IUserModel>(
 
 // hashing password
 userSchema.pre('save', async function (next) {
-  this.password = await bcrypt.hash(
-    this.password,
-    Number(config.bcryptSaltRounds),
-  );
+  if (this.password)
+    this.password = await bcrypt.hash(
+      this.password,
+      Number(config.bcryptSaltRounds),
+    );
   next();
 });
 
 userSchema.post('save', async function (doc, next) {
-  doc.password = '🤫';
+  if (doc.password) doc.password = '🤫';
   next();
 });
 
