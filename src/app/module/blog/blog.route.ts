@@ -7,6 +7,8 @@ import validateRequest from '../../middleware/validateRequest';
 
 const router = Router();
 
+router.get('/', BlogController.getAllBlogs);
+
 router.post(
   '/',
   auth(UserRole.user),

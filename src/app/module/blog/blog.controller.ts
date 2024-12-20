@@ -3,6 +3,17 @@ import { BlogServices } from './blog.service';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 
+const getAllBlogs = catchAsync(async (req, res) => {
+  const result = await BlogServices.getAllBlogsFromDB(req?.query);
+
+  sendResponse(res, {
+    statusCode: status.OK,
+    success: true,
+    message: 'Blogs fetched successfully',
+    data: result,
+  });
+});
+
 const createBlog = catchAsync(async (req, res) => {
   const result = await BlogServices.createBlogIntoDB(req.user.userId, req.body);
 
@@ -43,4 +54,9 @@ const deleteBlog = catchAsync(async (req, res) => {
   });
 });
 
-export const BlogController = { createBlog, updateBlog, deleteBlog };
+export const BlogController = {
+  getAllBlogs,
+  createBlog,
+  updateBlog,
+  deleteBlog,
+};

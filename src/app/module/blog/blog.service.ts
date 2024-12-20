@@ -1,6 +1,17 @@
 import { Blog } from './blog.model';
 import { TBlog } from './blog.interface';
+import QueryBuilder from '../../builder/QueryBuilder';
+import { BlogSearchableFields } from './blog.constant';
 import { updateFields, validateBlog } from './blog.utils';
+
+const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
+  const blogsQuery = new QueryBuilder(Blog.find(), query)
+    .search(BlogSearchableFields)
+    .sort()
+    .filter();
+  const result = await blogsQuery.modelQuery.populate('author');
+  return result;
+};
 
 const createBlogIntoDB = async (author: string, payload: TBlog) => {
   const result = (await Blog.create({ ...payload, author })).populate('author');
@@ -26,6 +37,7 @@ const deleteBlogFromDB = async (id: string, user: string) => {
 };
 
 export const BlogServices = {
+  getAllBlogsFromDB,
   createBlogIntoDB,
   updateBlogIntoDB,
   deleteBlogFromDB,
