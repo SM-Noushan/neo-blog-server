@@ -6,3 +6,5 @@ export interface IBlog {
   author?: Types.ObjectId;
   isPublished?: boolean;
 }
+
+export type TBlog = Pick<IBlog, 'title' | 'content'>;

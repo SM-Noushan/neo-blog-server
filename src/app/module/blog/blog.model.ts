@@ -17,4 +17,9 @@ const blogSchema = new Schema<IBlog>(
   },
 );
 
+blogSchema.pre(['find', 'findOne'], function (next) {
+  this.find({ isPublished: { $ne: false } });
+  next();
+});
+
 export const Blog = model<IBlog>('Blog', blogSchema);

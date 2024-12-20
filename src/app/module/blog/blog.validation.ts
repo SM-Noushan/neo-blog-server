@@ -8,6 +8,11 @@ const createBlogValidationSchema = z.object({
   }),
 });
 
+const updateBlogValidationSchema = z.object({
+  body: createBlogValidationSchema.shape.body.deepPartial(),
+});
+
 export const BlogValidation = {
   createBlogValidationSchema,
+  updateBlogValidationSchema,
 };
