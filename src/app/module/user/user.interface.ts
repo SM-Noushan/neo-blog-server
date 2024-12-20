@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Model } from 'mongoose';
+import { Document, Model } from 'mongoose';
 import { UserRole } from './user.constant';
 import { TLoginUser } from '../auth/auth.interface';
 
@@ -24,12 +24,12 @@ export interface IUserModel extends Model<IUser> {
   isUserExistsByEmail(
     email: string,
     throwErrorIfUserExist?: boolean,
-  ): Promise<IUser>;
+  ): Promise<Document & IUser>;
   isUserBlocked: (user: IUser) => Promise<void>;
   isPasswordMatched: (user: IUser, password: string) => Promise<void>;
   validateUser: ({
     payload,
     checkIsBlocked,
     checkIsPasswordMatched,
-  }: IValidateUserOptions) => Promise<IUser>;
+  }: IValidateUserOptions) => Promise<Document & IUser>;
 }
