@@ -2,7 +2,12 @@
 
 ## Overview
 
-Neo Blog is a robust backend application designed for a blogging platform. It facilitates users and admins with role-based features for managing blogs. The platform supports secure authentication, advanced authorization, and rich API functionalities such as search, sort, and filter.
+<a href="https://neo-blog-server.vercel.app/" style="text-decoration: none; font-size: 1.125em; font-weight: bold;">Neo Blog</a> is a robust backend application designed for a blogging platform. It facilitates users and admins with role-based features for managing blogs. The platform supports secure authentication, advanced authorization, and rich API functionalities such as search, sort, and filter.
+
+##### Credentials (Admin):
+
+    - Email: admin@admin.admin
+    - Password: admin12
 
 ---
 
